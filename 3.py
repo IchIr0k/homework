@@ -1,23 +1,16 @@
+a = int(input())
+b = int(input())
+c = int(input())
+d = int(input())
+
+
 def nod(a, b):
-    while a != b:
-        if a > b:
-            a -= b
-        else:
-            b -= a
-    return a
+    if a == 0 or b == 0:
+        return a + b
+    if a > b:
+        return nod(a - b, b)
+    else:
+        return nod(a, b - a)
 
 
-def nok(a, b):
-    return (a * b) // nod(a, b)
-
-
-A = int(input('Введите значение A: '))
-B = int(input('Введите значение B: '))
-
-if A <= 0 or B <= 0:
-    print('Одно из чисел не является натуральным')
-else:
-    NOD = nod(A, B)
-    NOK = nok(A, B)
-    print(f'Наибольший общий делитель (НОД) чисел {A} и {B}: {NOD}')
-    print(f'Наименьшее общее кратное (НОК) чисел {A} и {B}: {NOK}')
+print(nod(nod(a, b), nod(c, d)))
